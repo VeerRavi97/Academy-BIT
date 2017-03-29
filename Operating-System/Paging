@@ -1,0 +1,114 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+struct request
+{
+   int rsize;
+   int pn;
+
+
+} r[30];
+struct pagetable
+{
+    int fn;
+    int valid;
+
+
+}pt[10];
+int ft[10];
+
+int main()
+{
+   printf("enter the number of requests\n") ;
+   int nor,plim;
+   cin >> nor;
+   printf("enter the page limit\n");
+   cin >> plim;
+
+   printf("enter  size of each request\n");
+   for(int i=0;i<nor;i++)
+   {
+       int in;
+       cin >> in;
+       r[i].rsize =in;
+       r[i].pn=in/plim;
+
+
+
+
+   }
+   printf("enter the memory limit\n");
+   int mlim;
+   cin >> mlim;
+   int nof=mlim/plim;
+   for(int i=0;i<5;i++)
+   {
+       pt[i].fn=0;
+       pt[i].valid=0;
+
+
+   }
+    for(int i=0;i<nof;i++)
+        ft[i]=-1;
+    printf("   Initially\n");
+
+        for(int i=0;i<nor;i++)
+        {
+            printf("%d     %2d\n", r[i].rsize,r[i].pn);
+        }
+        printf("  Page table\n");
+         for(int i=0;i<5;i++)
+            printf("  %d  %d\n",pt[i].fn,pt[i].valid);
+            printf("  Frame Table\n");
+         for(int i=0;i<nof;i++)
+
+       printf("  %d\n", ft[i]);
+       int let=0;
+
+       for(int i=0;i<nor;i++)
+       {
+
+             int m=r[i].pn;
+             printf("\n\nFor Request= %d and Page= %d \n\n",r[i].rsize,m);
+             if(pt[m].valid==0)
+             {
+                for(int k=0;k<2;k++)
+                {
+                    ft[let]=-1;
+                    if(ft[k]==-1)
+                    {
+                        ft[k]=r[i].pn;
+                        pt[m].fn=k+1;
+
+
+                        if(let <1)
+                            let ++;
+                        else
+                            let=0;
+                         break;
+
+                    }
+                }
+                pt[m].valid=1;
+            }
+             printf("Page table\n");
+             printf("  Fno v/i\n");
+             for(int i=0;i<5;i++)
+             printf("  %d   %d\n",pt[i].fn,pt[i].valid);
+             printf("Frame Table\n");
+         for(int i=0;i<nof;i++)
+       printf(" P%d\n",ft[i]);
+       }
+
+
+}
+
+   // 10 11 104 170 73 309 185 245 246 434 458 364
+
+
+
+
+
+
+
+
