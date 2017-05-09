@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+using namespace  std;
+struct request{
+int tr;
+int arr;
+int sc;
+bool done;
+
+}r[30];
+int main()
+{
+    printf("enter the number of requests\n");
+    int nor;
+    cin >> nor;
+    printf("Enter the arrival,track and request number\n");
+    for(int i=1;i<nor+1;i++)
+    {
+        cin >> r[i].arr >> r[i].tr >> r[i].sc;
+        r[i].done=false;
+
+
+
+    }
+       // assuming that data is given in the order of arrival time
+       r[0].tr=100;
+       r[0].sc=0;
+       r[0].done=true;
+       r[0].arr=-1;
+       float sum=0;
+
+    for(int i=1;i<nor+1;i++)
+    {
+        int diff=abs(r[i].tr-r[i-1].tr);
+        float seek=10 + .1*diff;
+        int rate=1;
+        int rotl=abs(r[i].sc-r[i-1].sc);
+        float tot=seek+rate+rotl;
+        sum+=tot;
+        printf(" Seek Time    Latency    Total\n");
+        printf("  %f     %d   %f\n",seek,rotl,tot);
+
+
+
+
+
+
+    }
+
+    printf(" Average is %f\n",sum/nor);
+
+}
+
+  /* 0  45  0
+  23  132  6
+  25  20  2
+  29  23  1
+  35  198  7
+  45  170  5
+  57  180  3
+  83  78  4
+  88  73  5
+  95  150  7 */
