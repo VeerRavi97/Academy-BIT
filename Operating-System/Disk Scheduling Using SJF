@@ -1,0 +1,117 @@
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+struct request
+{
+    int id;
+    int arr;
+    int tr;
+    int sc;
+    bool done;
+
+}p[20];
+int main()
+{
+     int i=0;
+     int t=0;
+     float sum1=0,sum2=0;
+    printf("enter the number of requests\n");
+    int n;
+    cin >> n;
+    printf("enter the arrival,track and sector  of  requests\n ");
+    for(int i=0;i<n;i++)
+  {
+    cin >> p[i].arr >> p[i].tr >> p[i]. sc;
+    p[i].id=i;
+    p[i].done=false;
+  }
+   int sofar=0;
+   typedef pair <int,int> ii;
+   vector <int >v1;
+   int pretc=100;
+  int presc=0;
+   while(sofar <n)
+   {
+       vector <ii > v;
+        printf("processes in ready Queue ");
+        int cont;
+        cont=0;
+     for(int i=0;i<n;i++)
+       {
+           if(p[i].arr <=t && p[i].done==false)
+           {
+
+            v.push_back(make_pair(abs(p[i].tr-pretc),i));
+            printf("  R%d",i+1 );
+            cont++;
+           }
+
+       }
+       if(cont==0)
+       {
+           for(int i=0;i<n;i++)
+
+           {
+               if(p[i].done==false)
+               {
+                   v.push_back(make_pair(abs(p[i].tr-pretc),i));
+                               printf("  R%d",i+1 );
+                   break;
+               }
+
+
+          }
+ }
+       printf("\n");
+       sort(v.begin(),v.end());
+       int w=v[0].second;
+
+       v1.push_back(w);
+
+       int trc1=p[w].tr;
+
+       int diff=abs(trc1 -pretc);
+       float seek=10+.1* diff;
+       int sc1=p[w].sc;
+       int diff2;
+       if( presc  < sc1)
+        diff2=abs(sc1-presc);
+       else
+         diff2 =8- abs(sc1-presc);
+         pretc=p[w].tr;
+    presc=p[w].sc;
+
+    float rot=diff2;
+
+   printf(" Request selected\n");
+   printf("Request seek Time    RotLatency      Total Time\n");
+  printf("R%d     %f       %f        %f\n\n" ,w+1,seek,rot,seek+rot);
+
+    sum1+=seek+rot;
+    t+=seek +rot;
+   p[w].done=true;
+   sofar ++;
+}
+printf(" Job Queue ");
+for( int i=0;i<v1.size();i++)
+    printf(" R%d  ",v1[i]+1);
+printf("\n\n\n");
+
+printf("aVERAGE tURNaROUND %f\n",(float)sum1/n );
+}
+/*
+ 0 45 0
+ 23 132 6
+ 25 20 2
+ 29 23 1
+ 35 198 7
+ 45 170 5
+ 57 180 3
+ 83  78 4
+ 88 73 5
+ 95  150  7
+
+ */
+
