@@ -1,0 +1,55 @@
+
+
+#include<bits/stdc++.h>
+
+using namespace std;
+#define f(x) (float)( cos(x) -x*exp(x))
+
+int main()
+{
+    float a=0,b=0;
+    float re;
+printf("enter the initial values\n");
+
+
+    cin >> a >> b;
+    float r=0,m;
+
+for(int i=0;i <15;i++)
+{
+    float up= (b-a)/(f(b)-f(a));
+     m= b- up * f(b);
+
+
+
+    printf(" m=%f\n ", m);
+    if (f(a)*f(m) < 0)
+    {
+
+
+    a=a+0;
+    b=m;
+    }
+    else if (f(b)*f(m)<0){
+        a=b;
+    b=m;
+}
+
+
+
+
+    if( abs(r-m) <.005)
+    break;
+    printf("root lies in");  printf("[%f,%f] ",a,b);
+    r=m;
+
+
+
+}
+ printf("the smallest root is %f ",m);
+
+
+
+
+}
+
