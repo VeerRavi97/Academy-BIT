@@ -1,0 +1,50 @@
+
+#include<bits/stdc++.h>
+using namespace  std;
+float f1(float x2,float x3)
+{
+    return (7+x2)/2;
+}
+float f2(float x1,float x3)
+{
+    return (1+x1+x3)/2;
+}
+float f3(float x1,float x2)
+{
+    return (1+x2)/2;
+}
+int main()
+{
+    float a,b,c;
+    printf("enter the initial approximation\n");
+    cin >>a >>b >>c;
+    int n;
+    printf("enter the number of iterations\n");
+    cin >>n;
+    for(int i=0;i<n;i++)
+    {
+        int jam=1;
+        float x=f1(b,c);
+        float y=f2(x,c);
+        float z=f3(x,y);
+        a=x;
+        b=y;
+        c=z;
+        printf(" At Iteration %d \n",i+1);
+        printf(" X%d=%f  X%d=%f  X%d=%f\n\n",jam,x,jam+1,y,jam+2,z);
+
+        jam=1;
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+}
