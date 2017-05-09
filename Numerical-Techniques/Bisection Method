@@ -1,0 +1,55 @@
+
+#include<bits/stdc++.h>
+
+using namespace std;
+#define f(x) (float)( x*x*x -5*x +1)
+
+int main()
+{
+    float a=0,b=0;
+    float re;
+
+
+    for(int i=0;i<10;i++)
+    {
+            a=i;
+            b=i+1;
+
+          re=f(a)*f(b);
+          if(re<0){
+                printf("the smallest root lies in the ");
+
+                printf("[%f,%f] ",a,b);
+                break;
+                }
+
+     }
+    float r=0,m=0;
+
+for(int i=0;i <15;i++)
+{
+    m=(a+b)/2;
+    printf(" m=%f\n ", m);
+
+    float ch=f(a) * f(m);
+    if(ch <0)
+        b=m;
+    else
+        a=m;
+
+
+    if( abs(r-m) <.005)
+    break;
+    printf("root lies in");  printf("[%f,%f] ",a,b);
+    r=m;
+
+
+
+}
+ printf("the smallest root is %f ",m);
+
+
+
+
+}
+
