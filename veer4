@@ -14,3 +14,61 @@ display_age(A,B):- person(A,B,C,D).
 display_hobby(A,B) :- person(A,C,B,D).
 child(X):- person(X,B,C,D),B<16.
 like(A,X):-person(A,B,C,D),person(X,Y,Z,W), B<16,Y<16,C=Z,not(B=Y).
+
+
+
+
+
+
+?-  
+|    aggregate_all(count, child(X), Count).
+Count = 4.
+
+9 ?- like(A,X)
+A = ram,
+X = ravindra 
+
+
+
+|     display_age(A,B).
+A = ram,
+B = 15 ;
+A = mohan,
+B = 11 ;
+A = sohan,
+B = 25 ;
+A = mahesh,
+B = 30 ;
+A = ravindra,
+B = 11 ;
+A = rakesh,
+B = 25 ;
+A = rajeev,
+B = 15 ;
+A = raju,
+B = 30 .
+
+
+
+
+   display_hobby(A,B).
+A = ram,
+B = football ;
+A = mohan,
+B = volleyball ;
+A = sohan,
+B = card ;
+A = mahesh,
+B = swimming ;
+A = ravindra,
+B = football ;
+A = rakesh,
+B = volleyball ;
+A = rajeev,
+B = swimming ;
+A = raju,
+B = swimming ;
+A = jaichand,
+B = football ;
+A = vijay,
+B = volleyball.
