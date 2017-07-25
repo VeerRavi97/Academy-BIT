@@ -1,0 +1,16 @@
+person(ram,15,football,dog).
+person(mohan,11,volleyball,cat).
+person(sohan,25,card,cow).
+person(mahesh,30,swimming,dog).
+person(ravindra,11,football,goat).
+person(rakesh,25,volleyball,cat).
+person(rajeev,15,swimming,dog).
+person(raju,30,swimming,dog).
+person(jaichand,40,football,cow).
+person(vijay,30,volleyball,cat).
+
+
+display_age(A,B):- person(A,B,C,D).
+display_hobby(A,B) :- person(A,C,B,D).
+child(X):- person(X,B,C,D),B<16.
+like(A,X):-person(A,B,C,D),person(X,Y,Z,W), B<16,Y<16,C=Z,not(B=Y).
