@@ -24,3 +24,8 @@ canreach(banana,monkey):-
 
 canget(banana,monkey):-
     canreach(banana,monkey),grasp(monkey).
+3 ?- canget(banana,monkey).
+true.
+
+4 ?- canget(apple,monkey).
+false.
