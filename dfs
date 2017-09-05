@@ -10,3 +10,4 @@ path(Start, Finish, Visited, [Start | Path]) :-
      edge(Start, X),
      not(member(X, Visited)),
      path(X, Finish, [X | Visited], Path).
+http://www.cse.unsw.edu.au/~billw/cs9414/notes/search/search.html
