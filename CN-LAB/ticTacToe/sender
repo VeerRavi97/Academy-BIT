@@ -1,0 +1,122 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package newsender;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
+import java.net.UnknownHostException;
+
+/**
+ *
+ * @author lab7
+ */
+public class Newsender {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws UnknownHostException, IOException {
+        // TODO code application logic here
+         String msg = "Lets Start the Game";
+         char a[][]=new char[3][3];  
+         
+ InetAddress group = InetAddress.getByName("228.5.6.7");
+ MulticastSocket s = new MulticastSocket(6789);
+ InetAddress group1= InetAddress.getByName("228.5.5.7");
+ MulticastSocket s1 = new MulticastSocket(6788);
+  InetAddress group3= InetAddress.getByName("228.5.4.7");
+ MulticastSocket s3 = new MulticastSocket(6787);
+ InetAddress group4= InetAddress.getByName("228.5.3.7");
+ MulticastSocket s4 = new MulticastSocket(6786);
+ s4.joinGroup(group4);
+ s.joinGroup(group);
+ s1.joinGroup(group1);
+ s3.joinGroup(group3);
+ DatagramPacket hi = new DatagramPacket(msg.getBytes(), msg.length(),
+                             group, 6789);
+ s.send(hi);
+ // get their responses!
+ byte[] buf = new byte[1000];
+ DatagramPacket recv = new DatagramPacket(buf, buf.length);
+ s3.receive(recv);
+ String msg1 = new String(recv.getData());
+            System.out.println("RECIEVED : " + msg1);
+        switch (msg) {
+            case "1":
+                a[0][0]='X';
+                break;
+            case "2":
+                a[0][1]='X';
+                break;
+            case "3":
+                a[0][2]='X';
+                break;
+            case "4":
+                a[1][0]='X';
+                break;
+            case "5":
+                a[1][1]='X';
+                break;
+            case "6":
+                a[1][2]='X';
+                break;
+            case "7":
+                a[2][0]='X';
+                break;
+            case "8":
+                a[2][1]='X';
+                break;
+            case "9":
+                a[2][2]='X';
+                break;
+            default:
+                break;
+        }
+            String msg6="Your Turn Now";
+          DatagramPacket hi1 = new DatagramPacket(msg6.getBytes(), msg6.length(),
+                             group, 6789); 
+           s.send(hi1);
+            s4.receive(recv);
+ String msg7 = new String(recv.getData());
+            System.out.println("RECIEVED : " + msg7);
+            switch (msg7) {
+            case "1":
+                a[0][0]='O';
+                break;
+            case "2":
+                a[0][1]='O';
+                break;
+            case "3":
+                a[0][2]='O';
+                break;
+            case "4":
+                a[1][0]='O';
+                break;
+            case "5":
+                a[1][1]='O';
+                break;
+            case "6":
+                a[1][2]='O';
+                break;
+            case "7":
+                a[2][0]='O';
+                break;
+            case "8":
+                a[2][1]='O';
+                break;
+            case "9":
+                a[2][2]='O';
+                break;
+            default:
+                break;
+        }
+            String msg8 = new String(recv.getData());
+            System.out.println( msg8);
+    }
+    
+}
