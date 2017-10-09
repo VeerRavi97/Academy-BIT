@@ -1,0 +1,13 @@
+hanoi(N):-move(N,left,right,middle).
+move(1,L,R,_) :-  
+    write('Move top disk from '), 
+    write(L), 
+    write(' to '), 
+    write(R), 
+    nl. 
+move(N,L,R,M) :- 
+    N>1, 
+    N1 is N-1, 
+    move(N1,L,M,R), 
+    move(1,L,R,_), 
+    move(N1,M,R,L). 
