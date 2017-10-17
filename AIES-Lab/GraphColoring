@@ -1,0 +1,64 @@
+
+edge(1,2).
+edge(2,1).
+edge(2,3).
+edge(3,2).
+edge(3,4).
+edge(4,3).
+edge(4,2).
+edge(2,4).
+
+
+
+color(1,red,a).
+color(2,blue,a).
+color(3,red,a).
+color(4,yellow,a).
+
+color(1,red,b).
+color(2,blue,b).
+color(3,green,b).
+color(4,green,b).
+
+
+
+color(1,red,c).
+color(2,red,c).
+color(3,red,c).
+color(4,red,c).
+
+
+
+coloredgraph(X,Y,Case):-edge(X,Y),color(X,Color,Case),color(Y,Color,Case).
+
+
+
+
+Executed:
+1 ?- coloredgraph(X,Y,a).
+false.
+
+2 ?-  coloredgraph(X,Y,b).
+X = 3,
+Y = 4 ;
+X = 4,
+Y = 3 ;
+false.
+
+3 ?- coloredgraph(X,Y,c).
+X = 1,
+Y = 2 ;
+X = 2,
+Y = 1 ;
+X = 2,
+Y = 3 ;
+X = 3,
+Y = 2 ;
+X = 3,
+Y = 4 ;
+X = 4,
+Y = 3 ;
+X = 4,
+Y = 2 ;
+X = 2,
+Y = 4.
