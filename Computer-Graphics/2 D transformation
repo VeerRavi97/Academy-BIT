@@ -1,0 +1,130 @@
+ #include<graphics.h>
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<bits/stdc++.h>
+
+using namespace std;
+void rotate( int figure[], int edges, double angle, int cx, int cy )
+{
+	double x, y;
+	angle = -1 * (angle*3.14/180);
+	double cos_a = cos(angle);
+	double sin_a = sin(angle);
+
+	for(int i=0; i < edges; i++)
+	{
+		x = figure[2*i] - cx;
+		y = figure[2*i+1] - cy;
+		figure[2*i] = ceil( (x * cos_a) - (y * sin_a) + cx );
+		figure[2*i+1] = ceil( (x * sin_a)+(y * cos_a) + cy );
+	}
+}
+
+
+int main()
+{
+int graphdriver=DETECT,graphmode,errorcode;
+int i;
+
+initgraph(&graphdriver,&graphmode,"c:\\tc\\bgi");
+
+
+int max_y = getmaxy();
+int tc;
+string s;
+do
+{
+cout << "Enter 1 for translation " << "\n";
+cout << "Enter 2 for scaling " << "\n";
+cout << "Enter 3 for rotation" << "\n";
+cin >> tc;
+if(tc==1)
+{
+    int points[]={100,50,50,100,50,200,150,200,150,100,100,50};
+    int x,y;
+    drawpoly(6,points);
+printf("Enter translation co-ordinates ");
+printf("x,y");
+scanf("%d%d",&x,&y);
+for(int i=0;i<12;i+=2)
+{
+
+    points[i]+=x;
+    points[i+1]+=y;
+}
+cleardevice();
+drawpoly(6,points);
+
+}
+else if(tc==2)
+{
+    int x,y;
+   int points[]={100,50,50,100,50,200,150,200,150,100,100,50};
+cleardevice();
+    drawpoly(6,points);
+
+    printf("Enter scaling co-ordinates\n ");
+    cin >> x >> y;
+    for(int i=0;i<12;i+=2)
+{
+
+    points[i]*=x;
+    points[i+1]*=y;
+}
+cleardevice();
+
+
+drawpoly(6,points);
+
+}
+else
+{
+int figure[]={100,50,50,100,50,200,150,200,150,100,100,50};
+	double angle;
+	cleardevice();
+	printf( "Enter angle of rotation in degrees: ");
+	scanf( "%lf", &angle);
+int cx,cy;
+int edges=6;
+	printf( "Enter the center of rotation: \n");
+	cin >> cx >> cy;
+	drawpoly( edges, figure );
+	cleardevice();
+	setbkcolor(WHITE);
+
+
+	setcolor(GREEN);
+	setlinestyle(SOLID_LINE, 0, 3);
+	drawpoly( edges, figure );
+
+
+	for(int i=0; i < edges; i++)
+		figure[2*i+1] = max_y - figure[2*i+1];
+	rotate(figure,edges,angle,cx,cy);
+	for(int i=0; i < edges; i++)
+		figure[2*i+1] = max_y - figure[2*i+1];
+
+	setcolor(WHITE);
+	drawpoly( edges, figure );
+
+}
+
+
+
+
+cout << "\n";
+cout << " Do you want to continue " << "\n";
+
+cin >> s;
+}
+while(s=="yes");
+
+cout << "  Done\n";
+getch();
+closegraph();
+
+
+}
+
+
