@@ -1,0 +1,13 @@
+         
+edge(1,2).    
+edge(1,3).
+edge(2,4).              
+edge(3,5).          
+edge(5,6).           
+depthfirst(Start,Finish,Solution):- path(Start, Finish,[], Solution).
+path(Node, Node, _, [Node]).                      
+path(Start, Finish, Visited, [Start | Path]) :-   
+     edge(Start, X),
+     not(member(X, Visited)),
+     path(X, Finish, [X | Visited], Path).
+http://www.cse.unsw.edu.au/~billw/cs9414/notes/search/search.html
