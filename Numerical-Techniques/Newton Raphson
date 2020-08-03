@@ -1,0 +1,46 @@
+
+#include<bits/stdc++.h>
+
+using namespace std;
+#define f(x) (float)( x*x*x -5*x +1)
+#define df(x) (float) (3*x*x -5)
+
+int main()
+{
+    float a=0,b=0;
+    float re;
+printf("enter the initial value\n");
+
+
+    cin >> b;
+    float r=0,m;
+
+for(int i=0;i <15;i++)
+{
+    float up= df(b);
+     m= b-  f(b)/up;
+
+
+
+    printf(" m=%f\n ", m);
+    a=b;
+    b=m;
+
+
+
+
+    if( abs(r-m) <.0005)
+    break;
+
+    r=m;
+
+
+
+}
+ printf("the smallest root is %f ",m);
+
+
+
+
+}
+
