@@ -1,0 +1,82 @@
+import matplotlib.pyplot as mp
+mp.style.use('seaborn-whitegrid')
+import matplotlib.pyplot as plt
+
+
+def ss(alpha,beta,gam,temp):
+    if (temp<=alpha):
+        return 0
+    if(temp>alpha and temp<=beta):
+        return 2* ( ((temp-alpha)/(gam-alpha) ) * ((temp-alpha)/(gam-alpha)))
+    if(beta<temp and temp<=gam):
+        return 1-(2* ( ((temp-gam)/(gam-alpha) ) * ((temp-gam)/(gam-alpha))))
+    if(temp>gam):
+        return 1
+    
+def bell(alpha,beta,gam,temp):
+    return 1.0/(1.0+(abs((temp-gam)/alpha))**beta)  
+
+
+x=[]
+y=[]
+y2=[]
+y6=[]
+y7=[]
+alpha=1
+beta=3
+gam=5
+temp=-1
+
+for i in range(1,1000):
+    x.append(temp)
+    y6.append(ss(alpha,beta,gam,temp))
+    y7.append(bell(alpha,beta,gam,temp))
+    if (temp<alpha):
+        y.append(0)
+        y2.append(1)
+        
+    elif(temp>=alpha and temp<=beta):
+        y.append((temp-alpha)/(beta-alpha))
+        y2.append((beta-temp)/(beta-alpha))
+    
+    else:
+        y.append(1)
+        y2.append(0)
+        
+    temp=temp+0.01
+
+
+plt.plot(x, y2)
+ 
+plt.xlabel('members')
+
+plt.ylabel('member-ship_values')
+plt.grid(color='g', linestyle='--', linewidth=1)
+
+plt.title('L FUNCTION')
+
+plt.show()
+
+plt.show()
+
+plt.plot(x, y6)
+ 
+plt.xlabel('members')
+
+plt.ylabel('member-ship_values')
+plt.grid(color='g', linestyle='--', linewidth=1)
+
+plt.title('S-Sigmoidal FUNCTION')
+
+plt.show()
+
+plt.plot(x, y7)
+ 
+plt.xlabel('members')
+
+plt.ylabel('member-ship_values')
+
+plt.title('BELL FUNCTION')
+
+plt.show()
+
