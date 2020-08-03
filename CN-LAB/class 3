@@ -1,0 +1,79 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication5;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.NetworkInterface;
+import java.net.Socket;
+import java.util.Scanner;
+public class JavaApplication5 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws MalformedURLException {
+          Socket s1;
+        
+        try
+        {
+            URL url=new URL("https://172.16.1.1:8090/httpclient.html?u=http://google.com/");
+            System.out.println("URL is " + url.toString());
+            System.out.println("PROTOCOL is " + url.getProtocol());
+            System.out.println("PORT is " + url.getPort());
+            System.out.println("PATH is " + url.getPath());
+            System.out.println("File Name is " + url.getFile());
+             for(int i=0;i<1023;i++)
+             {
+               try
+               {
+                    s1=new Socket("localhost",i);
+            }catch(Exception e)
+            {continue;}
+                  System.out.println("Listening Port" +i);
+                    
+                
+            
+             }
+               
+            
+        // TODO code application logic here
+    }catch(Exception e){System.out.println(e);}  
+
+}
+}
+
+    
+
+
+
+URL is https://172.16.1.1:8090/httpclient.html?u=http://google.com/
+PROTOCOL is https
+PORT is 8090
+PATH is /httpclient.html
+File Name is /httpclient.html?u=http://google.com/
+Listening Port135
+Listening Port445
+
+
+
+try {
+            ProcessBuilder builder = new ProcessBuilder(
+            "cmd.exe", "/c", "ipconfig /all");
+            builder.redirectErrorStream(true);
+            Process p = builder.start();
+            BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line;
+            while (true) {
+                line = r.readLine();
+                if (line == null) { break; }
+                else if(line.contains("adapter"))
+                    System.out.println(line);
+                else if(line.contains("Physical Address")){
+                    System.out.println(line.substring(38));
+                }
+            }
+        } catch (IOException ex) {}

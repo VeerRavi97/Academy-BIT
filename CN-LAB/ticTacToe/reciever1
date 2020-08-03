@@ -1,0 +1,51 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package newreceiver;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
+import java.net.UnknownHostException;
+
+/**
+ *
+ * @author lab7
+ */
+public class NewReceiver {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws UnknownHostException, IOException {
+        // TODO code application logic here
+        BufferedReader br = new BufferedReader(new
+        InputStreamReader(System.in));
+        InetAddress group = InetAddress.getByName("228.5.6.7");
+ MulticastSocket s = new MulticastSocket(6789);
+ InetAddress group1= InetAddress.getByName("228.5.5.7");
+ MulticastSocket s1 = new MulticastSocket(6788);
+ 
+ InetAddress group3= InetAddress.getByName("228.5.4.7");
+ MulticastSocket s3 = new MulticastSocket(6787);
+ s.joinGroup(group);
+ s1.joinGroup(group1);
+ s3.joinGroup(group3);
+ byte[] buf = new byte[1000];
+ DatagramPacket recv = new DatagramPacket(buf, buf.length);
+ s.receive(recv);
+ String msgrecieved = new String(recv.getData());
+            System.out.println("RECIEVED : " + msgrecieved);
+            String str=br.readLine();
+            DatagramPacket hi = new DatagramPacket(str.getBytes(),str.length(),
+                             group3, 6787);
+            s3.send(hi);
+            
+    }
+    
+}
