@@ -1,0 +1,134 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef vector<string> vs;
+#define all(c) c.begin(),c.end()
+int n;
+int state=0;
+
+vector<char>qw;
+vs match;
+vector<string>v[100];
+
+vector<char>moves(int state)
+{
+      int n=v[state].size();
+      vector<char>qw;
+    for(int i=0;i<n;i++)
+    {
+        string s=v[state][i];
+        int pos=s.find('.');
+        if(pos>0 && pos<s.length()-1)
+        {
+            char c=s[pos+1];
+           // cout << c;
+
+            if(find(all(qw),c)==qw.end())
+            qw.push_back(c);
+
+        }
+
+    }
+
+    return qw;
+}
+void gfet()
+{
+
+    for(int i=0;i<qw.size();i++)
+{
+    char c=qw[i];
+    int asc=(int)c;
+  //  if(asc>=65 && asc<=90)
+   // {
+  //  cout << "c is " << c << "\n";
+     for(int j=0;j<=n;j++)
+     {
+         string s=v[0][j];
+        // cout << "found " ;
+      //   cout << s << " ";
+         int pos=s.find(c,3);
+         if(pos>0)
+         {
+             int pos1=s.find('.');
+             if(pos1>0 && pos1<s.length()-1 && pos==pos1+1)
+             {
+             string rps=s.substr(pos1,2);
+             reverse(all(rps));
+             s.replace(pos1,2,rps);
+            // cout << "subs " << rps << " s " << s << "\n ";
+
+
+           v[state].push_back(s);
+
+             }
+         }
+
+     }
+  //  }
+    state++;
+
+}
+
+}
+
+int main()
+{
+
+    printf("Enter the number of productions\n");
+    cin >> n;
+     vs in(n);
+    for(int i=0;i<n;i++)
+    {
+        string s;
+        cin >> s;
+        in[i]=s;
+
+    }
+    char dfg=in[0][0];
+    string ag="->.";
+     string df='K'+ag+dfg;
+     cout << "K is equal to " << dfg << "'";
+     cout << "\n";
+        v[0].push_back(df);
+        for(int i=0;i<n;i++)
+        {
+            string s=in[i];
+        s.insert(3,1,'.');
+        v[0].push_back(s);
+        }
+
+
+  //printf("Initial state I0\n");
+  //for(int i=0;i<=n;i++)
+ // {
+
+   //   cout<< v[0][i] << "\n";
+ // }
+
+  qw=moves(0);
+  //cout << " unique\n";
+ //for(int i=0;i<qw.size();i++)
+  //  cout << qw[i] << " ";
+ //   cout << "\n";
+state++;
+
+gfet();
+for(int i=0;i<state;i++)
+{
+    cout << "state I" << i << "\n";
+    for(int j=0;j<v[i].size();j++)
+    {
+        string s=v[i][j];
+        cout << s << " ";
+    }
+   cout << "\n";
+
+}
+
+}
+
+
+
+
+

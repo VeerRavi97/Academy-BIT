@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+  {
+// these are variables
+int a,a!,!ab,a2=13,b,x;
+float s=2.34;
+x=0;
+a=12,b=23;
+if(a>b)
+a=x+10.12;
+else
+a=x+12;
+}
+   
