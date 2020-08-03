@@ -1,2 +1,0 @@
-# Academy-BIT
-# AIES-Lab
